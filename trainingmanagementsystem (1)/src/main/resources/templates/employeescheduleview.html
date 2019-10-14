@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Schedule list</title>
+        <link rel="stylesheet" href="../static/styles/scheduleview.css" th:href="@{styles/feedbackview.css}" />
+       <link rel="stylesheet" href="../static/styles/adminhome.css" th:href="@{styles/adminhome.css}" />
+    </head>
+    <body>
+   <header>
+<div class="div2">
+
+    <a th:href="@{/employeehome}" class="btn" >Home</a>
+    <a th:href="@{/addtopicemp}" class="btn" >Post Topic</a>
+	<a th:href="@{/addfeedback}" class="btn" >Feedback</a>
+    <a th:href="@{/getschedulesemployee}" class="btn">View Training</a>
+    <a th:href="@{/applynomination}" class="btn">Nominate</a>
+    <a th:href="@{/home}" class="btn">LogOut</a>
+</div>  
+</header>
+    
+        <table>
+            <thead>
+                <tr>
+                    <th>Schedule ID</th>
+               		<th>Topic Name</th> 
+                     <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Venue</th>
+	 			<th>Employee ID</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="schedule : ${scheduleList}">
+                    <td th:text="${schedule.scheduleId}"></td>
+                 <td th:text="${schedule.topic.topicName}"></td>
+                   <td th:text="${schedule.startDate}"></td> 
+                   <td th:text="${schedule.endDate}"></td>  
+                   <td th:text="${schedule.venue}"></td>
+	 				<td th:text="${schedule.employee.employeeId}"></td>
+                </tr>
+            </tbody>
+
+        </table>
+
+</body>
+</html>

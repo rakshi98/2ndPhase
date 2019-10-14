@@ -1,0 +1,64 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Schedule list</title>
+<link rel="stylesheet" href="../static/styles/scheduleview.css"
+	th:href="@{styles/scheduleview.css}" />
+<link rel="stylesheet" href="../static/styles/adminhome.css"
+	th:href="@{styles/adminhome.css}" />
+	
+	
+</head>
+<body>
+	<header>
+		<div class="div2">
+
+			<a th:href="@{/adminhome}" class="btn">Home</a>
+			 <a th:href="@{/addtopic}" class="btn">Add Topic</a> 
+			 <a th:href="@{/addschedule}" class="btn">Schedule Training</a>
+			  <a th:href="@{/getschedules}" class="btn">View Training</a>
+			<a th:href="@{/getfeedback}" class="btn">Feedback</a>
+			 <a th:href="@{/getNominations}" class="btn">Nominations</a>
+		</div>
+	</header>
+
+	<form action="/delete">
+	<div class="container">
+	<table  id="view">
+		<thead>
+			<tr>
+				<th>Schedule ID</th>
+				<th>Topic Name</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>Venue</th>
+				<th>Employee ID</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="schedule : ${scheduleList}">
+				<td th:text="${schedule.scheduleId}"></td>
+				<td th:text="${schedule.topic.topicName}"></td>
+				<td th:text="${schedule.startDate}"></td>
+				<td th:text="${schedule.endDate}"></td>
+				<td th:text="${schedule.venue}"></td>
+				<td th:text="${schedule.employee.employeeId}"></td>
+				<td>
+				<button type="submit" name="delete" id="delete" th:value="${schedule.scheduleId}" onclick="return confirm('Are you sure?')">Delete</button> 
+				</td>
+			</tr>
+		</tbody>
+
+	</table>
+	</div>
+	</form>
+	
+</body>
+</html>
+
+
+
+
+
+

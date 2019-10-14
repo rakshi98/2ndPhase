@@ -1,0 +1,39 @@
+<html xmlns:th="https://www.thymleaf.org">
+ <head>
+ <meta charset="ISO-8859-1"></meta>
+<title>Add Topic</title>
+<link rel="stylesheet" href="../static/styles/schedule.css" th:href="@{styles/schedule.css}" /> 
+
+</head>
+<body>
+<header>
+
+
+
+<div class="div2">
+
+    <a th:href="@{/managerhome}" class="btn" >Home</a>
+    <a th:href="@{/addtopicmanager}" class="btn" >Post Topic</a>
+    <a th:href="@{/getNominationsmanager}" class="btn" >View Nominations</a>
+    <a th:href="@{/home}" class="btn">LogOut</a>
+
+</div>  
+</header>
+<div class="result">
+		<div th:if="${topic!=null}">
+			<div th:text="${'Topic Addeed Successfully'}">
+			</div>
+		</div>
+	</div>	
+	<form class="form" th:action="@{/savetopicmanager}" method="post">
+		<fieldset>
+		<legend>Add Topic</legend>
+		<input type="text" name="topicName" id="topicName" placeholder="Enter Topic Name"/>
+		<input type="number" name="employeeId" id="employeeId" placeholder="Enter Employee Id"/>
+		<button type="submit">Submit</button>
+		<button type="reset">Reset</button>
+	
+	</fieldset>
+	</form>
+</body>
+</html>

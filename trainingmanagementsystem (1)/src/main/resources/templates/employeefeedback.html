@@ -1,0 +1,49 @@
+<html xmlns:th="https://www.thymleaf.org">
+ <head>
+<title>Training Management</title>
+<link rel="stylesheet" href="../static/styles/schedule.css" th:href="@{styles/schedule.css}" />
+</head>
+<body>
+<header>
+<div class="div2">
+
+    <a th:href="@{/employeehome}" class="btn" >Home</a>
+    <a th:href="@{/addtopicemp}" class="btn" >Post Topic</a>
+	<a th:href="@{/addfeedback}" class="btn" >Feedback</a>
+    <a th:href="@{/getschedulesemployee}" class="btn">ViewTraining</a>
+    <a th:href="@{/applynomination}" class="btn">Nominate</a>
+    <a th:href="@{/home}" class="btn">LogOut</a>
+</div>  
+</header>
+
+</body>
+<div class="result">
+		<div th:if="${feedback!=null}">
+			<div th:text="${'Feedback Addeed Successfully}">
+			</div>
+		</div>
+	</div>
+
+
+<form class="form" th:action="@{/savefeedback}" method="post">
+		<fieldset>
+			<legend>Give Feedback</legend>
+			
+			<input type="number" name="employeeId" id="employeeId" placeholder=" Enter Employee ID" />
+			
+			<select name="nominationInfo">
+				<option disabled="" selected="">Select Topic</option>
+				<option th:each="schedule:${topics}"
+						th:text="${schedule.scheduleId+'-'+schedule.topic.topicName}">
+				</option>
+			</select> 
+			
+			<input type="text" name="comments" id="comments" placeholder="Enter comments" />
+			
+			<button type="submit">Submit</button>
+			<button type="reset">Reset</button>
+
+		</fieldset>
+	</form>
+
+</html>

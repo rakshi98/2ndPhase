@@ -1,0 +1,127 @@
+/* //Navbar */
+
+.btn{
+  color:white;
+  background:rgba(0, 0, 0, 0.5);
+ /* margin-top:10px;*/
+  padding:30px 50px;
+  font-size:12px;
+  text-decoration:none;
+  letter-spacing:2px;
+  text-transform:uppercase;
+   font-weight:bold;
+
+}
+
+#btn1{
+  color:white;
+  background:rgba(1, 0, 0, 0.5);
+ /* margin-top:10px;*/
+  padding:10px 10px;
+  font-size:12px;
+  text-decoration:none;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  font-weight:bold;
+}
+
+.div2{
+margin-top:30px;
+float:right;
+size:90px;
+}
+header
+{    
+	background:Black;
+	width:100%;
+	background-color:;
+	display:block;
+	height:86px;
+background-image: url("tm.jpg");
+background-size: 350px;
+background-repeat: no-repeat;
+}
+.btn:hover{
+  border:none;
+  background:rgba(0, 0, 20, 0.4);
+  background:blue;
+  padding:20px 20px; 
+  color:white;
+font-weight:900;
+}
+
+
+.form
+{
+        width:25%;
+        margin-left:35%;
+        font-size: large;
+        font-weight: bold;
+        margin-top:2%;
+        
+        
+}
+ 
+.form fieldset
+{
+        border: 3px solid white;
+        padding-right:3%;
+       
+}
+ 
+.form legend
+{
+        text-align: center;
+        color:black;
+        font-size:28px;
+}
+ 
+.form input,select
+{
+        width:85%;
+        padding:5%;
+        margin-bottom:3%;
+        margin-left: 7%;
+}
+body{
+	background-image:url("../images/bg.jpg");
+	background-repeat:no-repeat;
+	background-size:cover;
+	position:relative;
+	background:rgba(0,0,0,0.5);
+}
+ 
+ 
+.form button[type=submit]
+{
+        width:40%;
+        padding: 5%;
+       
+        background-color: blue;
+        color:white;
+    float:left;
+    margin-right:5%;
+    margin-left: 7%;
+}
+ 
+.form button[type=reset]
+{
+        width:40%;
+        padding: 5%;
+        background-color: red;
+        color:white;
+       
+}
+ 
+.result
+{
+        width:25%;
+        margin-left: 33%;
+        padding-left:90px;
+        
+        color: white;
+        font-size:18px;
+        border: 5px solid gray;
+         margin-top:5%;
+       
+}

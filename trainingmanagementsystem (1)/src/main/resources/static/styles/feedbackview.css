@@ -1,0 +1,36 @@
+           #view {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 500px;
+  margin-left:400px;
+  margin-top:50px;
+  
+}
+
+#view td, #view th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#view tr:nth-child(even){background-color: #f2f2f2;}
+
+#view tr:hover {background-color: #ddd;}
+
+#view th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color:#809CD3;
+  color: white;
+}
+            form
+            {
+             width:200px;
+              margin-left:50%;
+            }
+            input,textarea
+            {
+            width:50%;
+            margin-bottom:3%;
+            
+            }

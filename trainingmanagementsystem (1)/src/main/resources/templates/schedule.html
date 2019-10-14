@@ -1,0 +1,61 @@
+<html xmlns:th="https://www.thymleaf.org">
+<head>
+<title>Add Schedule</title>
+<link rel="stylesheet" href="../static/styles/schedule.css" th:href="@{styles/schedule.css}" />
+</head>
+<body>
+<header>
+<div class="div2">
+
+    <a th:href="@{/adminhome}" class="btn" >Home</a>
+     <a th:href="@{/addtopic}" class="btn">Add Topic</a>
+    <a th:href="@{/addschedule}" class="btn" >Schedule Training</a>
+	<a th:href="@{/getschedules}" class="btn" >View Training</a>
+ 	<a th:href="@{/getfeedback}" class="btn" >Feedback</a>
+    <a th:href="@{/getNominations}" class="btn" >Nominations</a>
+    <a th:href="@{/home}" class="btn">LogOut</a>
+</div>  
+</header>
+
+	<div class="result">
+		<div th:if="${schedule!=null}">
+			<div th:text="${'Schedule Addeed Successfully-'+schedule.scheduleId}">
+			</div>
+		</div>
+	</div>
+
+	<form class="form" th:action="@{/saveschedule}" method="post">
+		<fieldset>
+			<legend>Add Schedule</legend>
+			
+			<select name="topicInfo">
+				<option disabled="" selected="">Select Topic</option>
+				<option th:each="topic:${topics}"
+						th:text="${topic.topicName}">
+						
+				</option>
+				
+			</select> 
+			<input type="date" name="startDate" id="startDate" placeholder=" Enter Start Date" />
+			<input type="date" name="endDate" id="endDate" placeholder="Enter End Date" />
+			<select name="venue">
+				<option disabled="" selected="">Select Venue</option>
+				<option>Apoorthi</option>
+				<option>Upanishadh</option>
+				<option>Navigator</option>
+				<option>Voyager</option>
+				<option>Bay35</option>
+				<option>saturn</option>
+				<option>neptune</option>
+				<option>Mars</option>
+				<option>kautilya</option>
+				<option>chanakya</option>
+			</select>
+			<input type="number" name="employeeId" id="employeeId" placeholder="Enter Employee Id" />
+			<button type="submit">Submit</button>
+			<button type="reset">Reset</button>
+
+		</fieldset>
+	</form>
+</body>
+</html>

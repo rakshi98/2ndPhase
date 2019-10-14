@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Schedule list</title>
+        <link rel="stylesheet" href="../static/styles/scheduleview.css" th:href="@{styles/feedbackview.css}" />
+       <link rel="stylesheet" href="../static/styles/adminhome.css" th:href="@{styles/adminhome.css}" />
+    </head>
+    <body>
+    <header>
+<div class="div2">
+
+    <a th:href="@{/adminhome}" class="btn" >Home</a>
+     <a th:href="@{/addtopic}" class="btn">Add Topic</a>
+    <a th:href="@{/addschedule}" class="btn" >Schedule Training</a>
+	<a th:href="@{/getschedules}" class="btn" >View Training</a>
+ 	<a th:href="@{/getfeedback}" class="btn" >Feedback</a>
+    <a th:href="@{/getNominations}" class="btn" >View Nominations</a>
+    <a th:href="@{/home}" class="btn">LogOut</a>
+</div>  
+</header>
+    
+    
+        <table id="view">
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Topic Name</th>
+                     <th>Comments</th>
+                 
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="feedback : ${feedbackList}">
+                    <td th:text="${feedback.employee.employeeId}"></td> 
+                    <td th:text="${feedback.schedule.topic.topicName}"></td>
+ 				<td th:text="${feedback.comments}"></td>
+                </tr>
+            </tbody>
+
+        </table>
+
+</body>
+</html>

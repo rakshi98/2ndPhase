@@ -1,0 +1,38 @@
+<html xmlns:th="https://www.thymleaf.org">
+<head>
+<title>Nomination</title>
+<link rel="stylesheet" href="../static/styles/scheduleview.css" th:href="@{styles/feedbackview.css}" />
+       <link rel="stylesheet" href="../static/styles/adminhome.css" th:href="@{styles/adminhome.css}" />
+</head>
+<body>
+<header>
+<div class="div2">
+
+    <a th:href="@{/managerhome}" class="btn" >Home</a>
+    <a th:href="@{/addtopicmanager}" class="btn" >Post Topic</a>
+    <a th:href="@{/getNominationsmanager}" class="btn" >View Nominations</a>
+    <a th:href="@{/home}" class="btn">LogOut</a>
+
+</div>  
+</header>
+        <table>
+            <thead>
+                <tr>
+                    <th>Topic Name</th>
+	 			<th>Employee ID</th>
+	 			<th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="nomination : ${nominationList}">
+                    <td th:text="${nomination.schedule.topic.topicName}"></td>
+           			<td th:text="${nomination.employee.employeeId}"></td>
+                   <!-- <td th:text="${schedule.startDate}"></td>  -->
+	 				
+                </tr>
+            </tbody>
+
+        </table>
+</body>
+</html>

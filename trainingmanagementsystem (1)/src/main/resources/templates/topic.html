@@ -1,0 +1,42 @@
+<html xmlns:th="https://www.thymleaf.org">
+ <head>
+<title>Training Management</title>
+<link rel="stylesheet" href="../static/styles/schedule.css" th:href="@{styles/schedule.css}" /> 
+</head>
+<body>
+<header>
+<div class="div2">
+
+    <a th:href="@{/adminhome}" class="btn" >Home</a>
+     <a th:href="@{/addtopic}" class="btn">Add Topic</a>
+    <a th:href="@{/addschedule}" class="btn" >Schedule Training</a>
+	<a th:href="@{/getschedules}" class="btn" >View Training</a>
+ 	<a th:href="@{/getfeedback}" class="btn" >Feedback</a>
+    <a th:href="@{/getNominations}" class="btn" >Nominations</a>
+    <a th:href="@{/home}" class="btn">LogOut</a>
+    
+   
+</div>  
+</header>
+<!-- Message-->
+	<div class="result">
+		<div th:if="${topic!=null}">
+			<div th:text="${'Topic Added Successfully'}">
+			</div>
+		</div>	
+		
+	</div>
+	
+
+	<form class="form" th:action="@{/savetopic}" method="post">
+		<fieldset>
+		<legend>Add Topic</legend>
+		<input type="text" name="topicName" id="topicName" placeholder="Enter Topic Name"/>
+		<input type="number" name="employeeId" id="employeeId" placeholder="Enter Employee Id"/>
+		<button type="submit">Submit</button>
+		<button type="reset">Reset</button>
+	
+	</fieldset>
+	</form>
+</body>
+</html>

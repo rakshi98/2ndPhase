@@ -1,0 +1,41 @@
+
+
+.btn{
+  color:white;
+  background:rgba(0, 0, 0, 0.5);
+ /* margin-top:10px;*/
+  padding:20px 40px;/*3050*/
+  font-size:12px;
+  text-decoration:none;
+  letter-spacing:2px;
+  text-transform:uppercase;
+   font-weight:bold;
+
+}
+
+.div2{
+margin-top:30px;
+float:right;
+size:50px;
+}
+header
+{  
+	background:black;
+	width:100%;
+	background-color:;
+	display:block;
+	height:86px;
+background-image: url("tm.jpg");
+background-size: 250px;
+background-repeat: no-repeat;
+}
+.btn:hover{
+  border:none;
+  background:rgba(0, 0, 20, 0.4);
+  background:blue;
+  padding:20px 20px; 
+  color:white;
+font-weight:900;
+}
+
+
