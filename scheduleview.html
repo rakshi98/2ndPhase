@@ -1,0 +1,120 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Schedule list</title>
+<link rel="stylesheet" href="../static/styles/scheduleview.css"
+	th:href="@{styles/scheduleview.css}" />
+<link rel="stylesheet" href="../static/styles/adminhome.css"
+	th:href="@{styles/adminhome.css}" />
+	
+	<link href='https://fonts.googleapis.com/css?family=Oswald:300'
+	rel='stylesheet' type='text/css' />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+	
+</head>
+<body>
+	<header>
+		<div class="div2">
+
+			<a th:href="@{/adminhome}" class="btn">Home</a>
+			 <a th:href="@{/addtopic}" class="btn">Add Topic</a> 
+			 <a th:href="@{/addschedule}" class="btn">Schedule Training</a>
+			  <a th:href="@{/getschedules}" class="btn">View Training</a>
+			<a th:href="@{/getfeedback}" class="btn">Feedback</a>
+			 <a th:href="@{/getNominations}" class="btn">Nominations</a>
+		</div>
+	</header>
+
+	<form action="/delete">
+	<table>
+		<thead>
+			<tr>
+				<th>Schedule ID</th>
+				<th>Topic Name</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>Venue</th>
+				<th>Employee ID</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="schedule : ${scheduleList}">
+				<td th:text="${schedule.scheduleId}"></td>
+				<td th:text="${schedule.topic.topicName}"></td>
+				<td th:text="${schedule.startDate}"></td>
+				<td th:text="${schedule.endDate}"></td>
+				<td th:text="${schedule.venue}"></td>
+				<td th:text="${schedule.employee.employeeId}"></td>
+				<td>
+				<button type="submit" name="delete" id="delete" th:value="${schedule.scheduleId}" onclick="return confirm('Are you sure?')">Delete</button>
+				</td>
+			</tr>
+		</tbody>
+
+	</table>
+	</form>
+				<button type="button" class="btn btn-primary" data-toggle="modal"
+				data-target="#myModal">UPDATE</button>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">LOGIN!!</h4>
+				</div>
+				<div class="modal-body">
+
+
+
+					<form class="form" th:action="@{/update}" method="post">
+
+				<select name="id">
+				<option disabled="" selected="">Select Id</option>
+				<option th:each="schedule:${schedules}"
+						th:text="${schedule.scheduleId}">		
+				</option>	
+			</select>
+				
+				<select name="venue">
+				<option disabled="" selected="">Select Venue</option>
+				<option>Apoorthi</option>
+				<option>Upanishadh</option>
+				<option>Navigator</option>
+				<option>Voyager</option>
+				<option>Bay35</option>
+				<option>saturn</option>
+				<option>neptune</option>
+				<option>Mars</option>
+				<option>kautilya</option>
+				<option>chanakya</option>
+				</select>
+
+						<div class="modal-footer">
+							<button type="submit">update</button>
+						</div>
+
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
