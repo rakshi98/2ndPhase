@@ -1,0 +1,504 @@
+create table virtusausers(username varchar(50) not null primary key,password varchar(100) not null,enabled number(1) not null);
+
+create table user_roles(username varchar(50) not null,role varchar(50) not null,constraint fk_user_roles foreign key(username) references virtusausers(username));
+
+create unique index ix_auth_username on user_roles(username,role);
+
+//employee@123
+insert into employee_table(employee_Id,emailId,employee_Name,enabled,password)values(101,'mamthamh5@gmail.com','mamatha',1,'$2a$10$2VWVBC1KjavUrNdwfom1Gezar4f3x8CnG0Xf.oHaxXTWu8sAaWbtW');
+
+//admin@123
+insert into  employee_table(employee_Id,emailId,employee_Name,enabled,password)values(102,'rakshi98@gmail.com','rakshi',1,
+'$2a$10$EsTSCNume0C/d6SOoqqkSuxCvQyHBDGrBH2TLR6Eue1zm4I7jYK2y');
+
+//pm@123
+insert into  employee_table(employee_Id,emailId,employee_Name,enabled,password)values(103,'kavitha@gmail.com','kavitha',1,
+'$2a$10$42phijj/7hmsI8QYUTxgheV5MR3SoCfwwq.AYmzNukMvx7T1mcufW');
+
+
+insert into role_table(role_id,role_name) values('ROLE_ADMIN','admin');
+insert into role_table(role_id,role_name) values('ROLE_EMPLOYEE','employee');
+insert into role_table(role_id,role_name) values('ROLE_PROJECTMANAGER','projectmanager');
+
+
+
+
+
+
+
+SQL*Plus: Release 11.2.0.2.0 Production on Wed Oct 9 21:40:24 2019
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> conn demo/demo123;
+Connected.
+SQL> desc employee_table;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEE_ID                               NOT NULL NUMBER(10)
+ EMPLOYEE_NAME                                      VARCHAR2(255 CHAR)
+ ENABLED                                            NUMBER(1)
+ PASSWORD                                           VARCHAR2(100 CHAR)
+
+SQL> insert into employee_table(employee_Id,employee_Name,enabled,password)values(101,'mamatha',1,'$2a$10$2VWVBC1KjavUrNdwfom1Gezar4f3x8CnG0Xf.oHaxXTWu8sAaWbtW');
+
+1 row created.
+
+SQL>
+SQL> insert into  employee_table(employee_Id,employee_Name,enabled,password)values(103,'kavitha',1,
+  2  '$2a$10$42phijj/7hmsI8QYUTxgheV5MR3SoCfwwq.AYmzNukMvx7T1mcufW');
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> insert into  employee_table(employee_Id,employee_Name,enabled,password)values(102,'rakshi',1,
+  2  '$2a$10$EsTSCNume0C/d6SOoqqkSuxCvQyHBDGrBH2TLR6Eue1zm4I7jYK2y');
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> desc role_table;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLE_NAME                                 NOT NULL VARCHAR2(255 CHAR)
+ ROLE_ID                                            VARCHAR2(255 CHAR)
+ EMPLOYEES_EMPLOYEE_ID                              NUMBER(10)
+
+SQL> desc role_table;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLE_NAME                                 NOT NULL VARCHAR2(255 CHAR)
+ ROLE_ID                                            VARCHAR2(255 CHAR)
+ EMPLOYEES_EMPLOYEE_ID                              NUMBER(10)
+
+SQL> conn /as sysdba;
+Connected.
+SQL> drop user demo;
+drop user demo
+*
+ERROR at line 1:
+ORA-01940: cannot drop a user that is currently connected
+
+
+SQL> drop user demo cascade;
+drop user demo cascade
+*
+ERROR at line 1:
+ORA-01940: cannot drop a user that is currently connected
+
+
+SQL> revoke connect,resource from demo;
+
+Revoke succeeded.
+
+SQL> drop user demo cascade;
+drop user demo cascade
+*
+ERROR at line 1:
+ORA-01940: cannot drop a user that is currently connected
+
+
+SQL> drop user demo cascade;
+
+User dropped.
+
+SQL> conn /as sysdba;
+Connected.
+SQL> create user demo identified by dem123;
+
+User created.
+
+SQL> drop user demo cascade;
+
+User dropped.
+
+SQL> conn /as sysdba;
+Connected.
+SQL> create user demo identified by demo123;
+
+User created.
+
+SQL> grant connect,resource to demo;
+
+Grant succeeded.
+
+SQL> connect demo/demo123;
+Connected.
+SQL> select *from tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+EMPLOYEE_TABLE                 TABLE
+EMPLOYEE_TABLE_ROLE            TABLE
+EMPLOYEE_TABLE_TOPIC           TABLE
+FEEDBACK_TABLE                 TABLE
+NOMINATION_TABLE               TABLE
+ROLE_TABLE                     TABLE
+SCHEDULE_TABLE                 TABLE
+TOPIC_TABLE                    TABLE
+
+8 rows selected.
+
+SQL> desc role_table;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLE_ID                                   NOT NULL VARCHAR2(255 CHAR)
+ ROLE_NAME                                          VARCHAR2(255 CHAR)
+
+SQL> insert into employee_table(employee_Id,employee_Name,enabled,password)values(101,'mamatha',1,'$2a$10$2VWVBC1KjavUrNdwfom1Gezar4f3x8CnG0Xf.oHaxXTWu8sAaWbtW');
+
+1 row created.
+
+SQL> insert into  employee_table(employee_Id,employee_Name,enabled,password)values(103,'kavitha',1,
+  2  ////////////////////
+  3  ............;
+////////////////////
+*
+ERROR at line 2:
+ORA-00936: missing expression
+
+
+SQL> insert into  employee_table(employee_Id,employee_Name,enabled,password)values(102,'rakshi',1,
+  2  '$2a$10$EsTSCNume0C/d6SOoqqkSuxCvQyHBDGrBH2TLR6Eue1zm4I7jYK2y');
+
+1 row created.
+
+SQL> insert into  employee_table(employee_Id,employee_Name,enabled,password)values(103,'kavitha',1,
+  2  '$2a$10$42phijj/7hmsI8QYUTxgheV5MR3SoCfwwq.AYmzNukMvx7T1mcufW');
+
+1 row created.
+
+SQL> select *from employee_table;
+
+EMPLOYEE_ID
+-----------
+EMPLOYEE_NAME
+--------------------------------------------------------------------------------
+   ENABLED
+----------
+PASSWORD
+--------------------------------------------------------------------------------
+        101
+mamatha
+         1
+$2a$10$2VWVBC1KjavUrNdwfom1Gezar4f3x8CnG0Xf.oHaxXTWu8sAaWbtW
+
+
+EMPLOYEE_ID
+-----------
+EMPLOYEE_NAME
+--------------------------------------------------------------------------------
+   ENABLED
+----------
+PASSWORD
+--------------------------------------------------------------------------------
+        102
+rakshi
+         1
+$2a$10$EsTSCNume0C/d6SOoqqkSuxCvQyHBDGrBH2TLR6Eue1zm4I7jYK2y
+
+
+EMPLOYEE_ID
+-----------
+EMPLOYEE_NAME
+--------------------------------------------------------------------------------
+   ENABLED
+----------
+PASSWORD
+--------------------------------------------------------------------------------
+        103
+kavitha
+         1
+$2a$10$42phijj/7hmsI8QYUTxgheV5MR3SoCfwwq.AYmzNukMvx7T1mcufW
+
+
+SQL> desc role_table;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLE_ID                                   NOT NULL VARCHAR2(255 CHAR)
+ ROLE_NAME                                          VARCHAR2(255 CHAR)
+
+SQL> insert into role_roles(role_id,role_name) values('ROLE_ADMIN','admin');
+insert into role_roles(role_id,role_name) values('ROLE_ADMIN','admin')
+            *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> insert into role_table(role_id,role_name) values('ROLE_ADMIN','admin');
+
+1 row created.
+
+SQL> insert into role_table(role_id,role_name) values('ROLE_EMPLOYEE','employee');
+
+1 row created.
+
+SQL> insert into role_table(role_id,role_name) values('ROLE_PROJECTMANAGER','projectmanager');
+
+1 row created.
+
+SQL> select *from role_table
+  2  ;
+
+ROLE_ID
+--------------------------------------------------------------------------------
+ROLE_NAME
+--------------------------------------------------------------------------------
+ROLE_ADMIN
+admin
+
+ROLE_EMPLOYEE
+employee
+
+ROLE_PROJECTMANAGER
+projectmanager
+
+
+SQL> select *from role_table;
+
+ROLE_ID
+--------------------------------------------------------------------------------
+ROLE_NAME
+--------------------------------------------------------------------------------
+ROLE_ADMIN
+admin
+
+ROLE_EMPLOYEE
+employee
+
+ROLE_PROJECTMANAGER
+projectmanager
+
+
+SQL> desc role_table;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLE_ID                                   NOT NULL VARCHAR2(255 CHAR)
+ ROLE_NAME                                          VARCHAR2(255 CHAR)
+
+SQL> drop role_table;
+drop role_table
+     *
+ERROR at line 1:
+ORA-00950: invalid DROP option
+
+
+SQL> drop table role_table;
+drop table role_table
+           *
+ERROR at line 1:
+ORA-02449: unique/primary keys in table referenced by foreign keys
+
+
+SQL> drop table role_table cascade constraints;
+
+Table dropped.
+
+SQL> desc role_table;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLE_ID                                   NOT NULL VARCHAR2(255 CHAR)
+ ROLE_NAME                                          VARCHAR2(255 CHAR)
+ EMPLOYEES_EMPLOYEE_ID                              NUMBER(10)
+
+SQL> desc role_table;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLE_ID                                   NOT NULL VARCHAR2(255 CHAR)
+ ROLE_NAME                                          VARCHAR2(255 CHAR)
+ EMPLOYEES_EMPLOYEE_ID                              NUMBER(10)
+
+SQL> drop table role_table cascade constraints;
+
+Table dropped.
+
+SQL> desc role_table;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLE_ID                                   NOT NULL NUMBER(10)
+ ROLE_NAME                                          VARCHAR2(255 CHAR)
+ EMPLOYEES_EMPLOYEE_ID                              NUMBER(10)
+
+SQL>    select * from employee_table;
+
+EMPLOYEE_ID
+-----------
+EMPLOYEE_NAME
+--------------------------------------------------------------------------------
+   ENABLED
+----------
+PASSWORD
+--------------------------------------------------------------------------------
+        101
+mamatha
+         1
+$2a$10$2VWVBC1KjavUrNdwfom1Gezar4f3x8CnG0Xf.oHaxXTWu8sAaWbtW
+
+
+EMPLOYEE_ID
+-----------
+EMPLOYEE_NAME
+--------------------------------------------------------------------------------
+   ENABLED
+----------
+PASSWORD
+--------------------------------------------------------------------------------
+        102
+rakshi
+         1
+$2a$10$EsTSCNume0C/d6SOoqqkSuxCvQyHBDGrBH2TLR6Eue1zm4I7jYK2y
+
+
+EMPLOYEE_ID
+-----------
+EMPLOYEE_NAME
+--------------------------------------------------------------------------------
+   ENABLED
+----------
+PASSWORD
+--------------------------------------------------------------------------------
+        103
+kavitha
+         1
+$2a$10$42phijj/7hmsI8QYUTxgheV5MR3SoCfwwq.AYmzNukMvx7T1mcufW
+
+
+SQL> drop table role_table cascade constraints;
+
+Table dropped.
+
+SQL> desc role_table;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLE_ID                                   NOT NULL NUMBER(10)
+ ROLE_NAME                                          VARCHAR2(255 CHAR)
+ EMPLOYEES_EMPLOYEE_ID                              NUMBER(10)
+
+SQL> insert into role_table(Role_name,Employees_employee_id) values('ROLE_ADMIN',102);
+insert into role_table(Role_name,Employees_employee_id) values('ROLE_ADMIN',102)
+*
+ERROR at line 1:
+ORA-01400: cannot insert NULL into ("DEMO"."ROLE_TABLE"."ROLE_ID")
+
+
+SQL> insert into role_table values(1,'ROLE_ADMIN',102);
+
+1 row created.
+
+SQL> insert into role_table values(2,'ROLE_EMPLOYEE',101);
+
+1 row created.
+
+SQL> insert into role_table values(3,'ROLE_MANAGER',103);
+
+1 row created.
+
+SQL> SELECT * FROM ROLE_TABLE;
+
+   ROLE_ID
+----------
+ROLE_NAME
+--------------------------------------------------------------------------------
+EMPLOYEES_EMPLOYEE_ID
+---------------------
+         1
+ROLE_ADMIN
+                  102
+
+         2
+ROLE_EMPLOYEE
+                  102
+
+   ROLE_ID
+----------
+ROLE_NAME
+--------------------------------------------------------------------------------
+EMPLOYEES_EMPLOYEE_ID
+---------------------
+
+         3
+ROLE_EMPLOYEE
+                  103
+
+
+SQL> commit;
+
+Commit complete.
+
+SQL> desc role_table;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLE_ID                                   NOT NULL NUMBER(10)
+ ROLE_NAME                                          VARCHAR2(255 CHAR)
+ EMPLOYEES_EMPLOYEE_ID                              NUMBER(10)
+
+SQL> select * from role_table;
+
+   ROLE_ID
+----------
+ROLE_NAME
+--------------------------------------------------------------------------------
+EMPLOYEES_EMPLOYEE_ID
+---------------------
+         1
+ROLE_ADMIN
+                  102
+
+         2
+ROLE_EMPLOYEE
+                  102
+
+   ROLE_ID
+----------
+ROLE_NAME
+--------------------------------------------------------------------------------
+EMPLOYEES_EMPLOYEE_ID
+---------------------
+
+         3
+ROLE_EMPLOYEE
+                  103
+
+
+SQL> desc role_table;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLE_ID                                   NOT NULL NUMBER(10)
+ ROLE_NAME                                          VARCHAR2(255 CHAR)
+ EMPLOYEES_EMPLOYEE_ID                              NUMBER(10)
+
+SQL> select *from role_table;
+
+   ROLE_ID
+----------
+ROLE_NAME
+--------------------------------------------------------------------------------
+EMPLOYEES_EMPLOYEE_ID
+---------------------
+         1
+ROLE_ADMIN
+                  102
+
+         2
+ROLE_EMPLOYEE
+                  102
+
+   ROLE_ID
+----------
+ROLE_NAME
+--------------------------------------------------------------------------------
+EMPLOYEES_EMPLOYEE_ID
+---------------------
+
+         3
+ROLE_EMPLOYEE
+                  103
+
+
+SQL>
